@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server"
 
 export async function POST(request: NextRequest) {
   try {
-    const { city, attractions } = await request.json()
+    const { city, attractions }: { city: string; attractions: { name: string }[] } = await request.json()
     const openAIKey = process.env.OPENAI_API_KEY
 
     if (!city || !attractions) {
@@ -174,10 +174,8 @@ export async function POST(request: NextRequest) {
           controller.enqueue(new TextEncoder().encode(completionMessage + "\n"))
         } catch (error) {
           console.error("Error in adventure generation:", error)
-          const errorMessage = JSON.stringify({
-            type: "error",
-            message: error instanceof Error ? error.message : "Failed to generate adventure",
-          })
+          const errorMessage = error instanceof Error ? error.message : "Failed to generate adventure"
+          console.log("Sending error response:", errorMessage)
           controller.enqueue(new TextEncoder().encode(errorMessage + "\n"))
         } finally {
           controller.close()
@@ -193,7 +191,9 @@ export async function POST(request: NextRequest) {
     })
   } catch (error) {
     console.error("Error in adventure API:", error)
-    return new Response(JSON.stringify({ error: "Failed to generate adventure" }), {
+    const errorMessage = error instanceof Error ? error.message : "Failed to generate adventure"
+    console.log("Sending error response:", errorMessage)
+    return new Response(JSON.stringify({ error: errorMessage }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     })
