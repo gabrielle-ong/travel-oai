@@ -1,10 +1,7 @@
 # Mystery Adventure Explorer
 
 ## Overview
-
-Mystery Adventure Explorer is an interactive travel application that transforms city exploration into an engaging mystery adventure. Users can search for cities around the world and embark on a guided adventure that connects major landmarks through an intriguing narrative with clues and discoveries.
-
-The app combines interactive maps, AI-generated content, and multimedia features to create an immersive travel experience that both entertains and educates users about destinations worldwide.
+Explore the world with Mystery Adventure Explorer! Search for cities and embark on a guided adventure in any that connects major landmarks through an intriguing mystery with clues and discoveries.
 
 ## Getting Started
 
