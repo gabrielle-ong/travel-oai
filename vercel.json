@@ -1,7 +1,7 @@
 {
     "functions": {
         "app/api/**/route.ts": {
-            "maxDuration": 60 // increased from default 10 as it times out
+            "maxDuration": 60
         }
     }
 }
