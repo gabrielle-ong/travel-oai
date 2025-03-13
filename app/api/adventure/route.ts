@@ -1,5 +1,9 @@
 import type { NextRequest } from "next/server"
 
+export const config = {
+  runtime: 'edge',
+};
+
 export async function POST(request: NextRequest) {
   try {
     const { city, attractions }: { city: string; attractions: { name: string }[] } = await request.json()
